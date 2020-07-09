@@ -3,21 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp">
-
-    <TextView
-        android:id="@+id/tvDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.033"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescription"
-        app:layout_constraintVertical_bias="0.0"
-        tools:text="March 14, 2020" />
+    android:layout_height="match_parent"
+    tools:context=".DetailViewActivity">
 
     <TextView
         android:id="@+id/tvUserTop"
@@ -59,7 +46,7 @@
     <TextView
         android:id="@+id/tvDescription"
         android:layout_width="300dp"
-        android:layout_height="22dp"
+        android:layout_height="21dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:inputType="textMultiLine"
@@ -70,4 +57,18 @@
         app:layout_constraintTop_toBottomOf="@+id/ivImage"
         app:layout_constraintVertical_bias="0.003"
         tools:text="description" />
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.033"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDescription"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="March 14, 2020" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.example.instagramclone;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.parse.ParseFile;
 
+import org.parceler.Parcels;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
@@ -42,12 +47,13 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         return posts.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView tvUserTop;
         private TextView tvUserBottom;
         private ImageView ivImage;
         private TextView tvDescription;
+        private TextView tvDate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -55,16 +61,41 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvUserBottom = itemView.findViewById(R.id.tvUserBottom);
             ivImage = itemView.findViewById(R.id.ivImage);
             tvDescription = itemView.findViewById(R.id.tvDescription);
+            tvDate = itemView.findViewById(R.id.tvDate);
+
+            itemView.setOnClickListener(this);
         }
 
         public void bind(Post post) {
             tvDescription.setText(post.getDescription());
             tvUserTop.setText(post.getUser().getUsername());
             tvUserBottom.setText(post.getUser().getUsername());
-            ParseFile image = post.getImage();
 
+            //parse the date
+            SimpleDateFormat parser=new SimpleDateFormat("HH:mm EEE MMM d yyyy");
+            Date date = post.getCreatedAt();
+            String formattedDate = parser.format(date);
+            tvDate.setText(formattedDate);
+
+            ParseFile image = post.getImage();
             if (image != null) {
                 Glide.with(context).load(post.getImage().getUrl()).into(ivImage);
+            }
+        }
+
+        @Override
+        public void onClick(View view) {
+            //get item position and check if valid
+            int pos = getAdapterPosition();
+            if(pos != RecyclerView.NO_POSITION) {
+                //get post at this position
+                Post post = posts.get(pos);
+                //create intent for the new activity
+                Intent intent = new Intent(context, DetailViewActivity.class);
+                //send to detail view
+                intent.putExtra("post", post);
+                //show the activity
+                context.startActivity(intent);
             }
         }
     }
@@ -80,4 +111,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         posts.addAll(list);
         notifyDataSetChanged();
     }
+
+
 }
