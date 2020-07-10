@@ -8,7 +8,7 @@ import com.parse.ParseObject;
 public class ParseApplication extends Application {
 
     @Override
-    public void onCreate(){
+    public void onCreate() {
         super.onCreate();
 
         // Register your parse models

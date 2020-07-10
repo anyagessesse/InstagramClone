@@ -74,7 +74,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvUserBottom.setText(post.getUser().getUsername());
 
             //parse the date
-            SimpleDateFormat parser=new SimpleDateFormat("HH:mm EEE MMM d yyyy");
+            SimpleDateFormat parser = new SimpleDateFormat("HH:mm EEE MMM d yyyy");
             Date date = post.getCreatedAt();
             String formattedDate = parser.format(date);
             tvDate.setText(formattedDate);
@@ -91,7 +91,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         public void onClick(View view) {
             //get item position and check if valid
             int pos = getAdapterPosition();
-            if(pos != RecyclerView.NO_POSITION) {
+            if (pos != RecyclerView.NO_POSITION) {
                 //get post at this position
                 Post post = posts.get(pos);
                 //create intent for the new activity
@@ -115,7 +115,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         posts.addAll(list);
         notifyDataSetChanged();
     }
-
 
 
 }

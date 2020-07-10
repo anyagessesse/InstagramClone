@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHolder>{
+public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHolder> {
 
     private Context context;
     private List<Post> posts;
@@ -68,7 +68,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
         public void onClick(View view) {
             //get item position and check if valid
             int pos = getAdapterPosition();
-            if(pos != RecyclerView.NO_POSITION) {
+            if (pos != RecyclerView.NO_POSITION) {
                 //get post at this position
                 Post post = posts.get(pos);
                 //create intent for the new activity
@@ -79,5 +79,17 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
                 context.startActivity(intent);
             }
         }
+    }
+
+    // Clean all elements of the recycler
+    public void clear() {
+        posts.clear();
+        notifyDataSetChanged();
+    }
+
+    // Add a list of posts
+    public void addAll(List<Post> list) {
+        posts.addAll(list);
+        notifyDataSetChanged();
     }
 }

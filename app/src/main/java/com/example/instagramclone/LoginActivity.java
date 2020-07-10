@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                     goMainActivity();
                 } else {
                     // Sign up didn't succeed.
-                    Log.e(TAG,"issue with signup",e);
+                    Log.e(TAG, "issue with signup", e);
                 }
             }
         });

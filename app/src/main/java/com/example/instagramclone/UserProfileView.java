@@ -1,65 +1,43 @@
-package com.example.instagramclone.fragments;
+package com.example.instagramclone;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.ImageDecoder;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.instagramclone.Post;
-import com.example.instagramclone.PostsAdapter;
-import com.example.instagramclone.ProfileAdapter;
-import com.example.instagramclone.R;
+import android.media.Image;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfileFragment extends Fragment {
-
-    public static final String TAG = "ProfileFragment";
+public class UserProfileView extends AppCompatActivity {
+    public static final String TAG = "UserProfileView";
 
     private RecyclerView rvPosts;
+    private ImageView ivProfilePic;
     protected ProfileAdapter adapter;
     protected List<Post> allPosts;
     private SwipeRefreshLayout swipeContainer;
-
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
+    ParseUser user;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_user_profile_view);
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        user = (ParseUser) getIntent().getParcelableExtra("user");
 
         // Lookup the swipe container view
-        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         // Configure the refreshing colors
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
@@ -76,11 +54,14 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        rvPosts = view.findViewById(R.id.rvPosts);
+        ivProfilePic = findViewById(R.id.ivProfilePic);
+        Glide.with(this).load(user.getParseFile("profilePic").getUrl()).into(ivProfilePic);
+
+        rvPosts = findViewById(R.id.rvPosts);
         allPosts = new ArrayList<>();
-        adapter = new ProfileAdapter(getContext(), allPosts);
+        adapter = new ProfileAdapter(this, allPosts);
         rvPosts.setAdapter(adapter);
-        rvPosts.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        rvPosts.setLayoutManager(new GridLayoutManager(this, 3));
 
         queryPosts();
     }
@@ -90,7 +71,7 @@ public class ProfileFragment extends Fragment {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
 
         query.include(Post.KEY_USER);
-        query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
+        query.whereEqualTo(Post.KEY_USER, user);
         query.setLimit(20);
         query.addDescendingOrder(Post.KEY_CREATED_AT);
         query.findInBackground(new FindCallback<Post>() {
@@ -108,6 +89,4 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
-
-
 }

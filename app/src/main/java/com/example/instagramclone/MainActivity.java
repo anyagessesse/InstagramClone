@@ -58,19 +58,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //sets up top the toolbar
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 //logs user out when logout menu item pressed
-                if(item.getItemId() == R.id.miLogout){
+                if (item.getItemId() == R.id.miLogout) {
                     ParseUser.logOut();
-                    if(ParseUser.getCurrentUser() == null){
+                    if (ParseUser.getCurrentUser() == null) {
                         goLoginActivity();
                     }
                 }
-                if(item.getItemId() == R.id.miProfilePic){
+                if (item.getItemId() == R.id.miProfilePic) {
                     launchCamera();
                 }
                 return true;
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void saveImage(File photoFile) {
         ParseUser currentUser = ParseUser.getCurrentUser();
-        currentUser.put("profilePic",new ParseFile(photoFile));
+        currentUser.put("profilePic", new ParseFile(photoFile));
         currentUser.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
