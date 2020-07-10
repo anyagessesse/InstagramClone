@@ -59,7 +59,7 @@ List an 3rd party libraries, icons, graphics, or other assets you used in your a
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+When trying to upload a photo from gallery, I had a hard time saving it to the Parse database.
 
 ## License
 
