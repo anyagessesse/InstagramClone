@@ -3,11 +3,13 @@ package com.example.instagramclone;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.instagramclone.fragments.ProfileFragment;
@@ -25,6 +27,9 @@ public class DetailViewActivity extends AppCompatActivity {
     TextView tvDescription;
     TextView tvDate;
     ImageView ivProfilePic;
+    ImageView ivLike;
+    TextView tvLikes;
+    int likes;
     Post post;
 
     @Override
@@ -38,6 +43,8 @@ public class DetailViewActivity extends AppCompatActivity {
         tvDescription = findViewById(R.id.tvDescription);
         tvDate = findViewById(R.id.tvDate);
         ivProfilePic = findViewById(R.id.ivProfilePic);
+        ivLike = findViewById(R.id.ivLike);
+        tvLikes = findViewById(R.id.tvLikes);
 
         post = (Post) getIntent().getParcelableExtra("post");
         tvUserTop.setText(post.getUser().getUsername());
@@ -51,6 +58,19 @@ public class DetailViewActivity extends AppCompatActivity {
         Date date = post.getCreatedAt();
         String formattedDate = parser.format(date);
         tvDate.setText(formattedDate);
+
+        likes = post.getNumber("likes").intValue();
+        tvLikes.setText(post.getNumber("likes").toString());
+
+        ivLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(DetailViewActivity.this, "like clicked", Toast.LENGTH_SHORT).show();
+                ++likes;
+                post.put("likes",likes);
+                tvLikes.setText(post.getNumber("likes").toString());
+            }
+        });
 
         tvUserTop.setOnClickListener(new View.OnClickListener() {
             @Override

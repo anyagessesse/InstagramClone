@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:textColor="@android:color/black"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.026"
@@ -28,20 +29,21 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/tvUserBottom"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUserTop"
+        app:layout_constraintVertical_bias="0.101"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
         android:id="@+id/tvUserBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@android:color/black"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvDate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivImage"
         tools:text="username" />
 
     <TextView
@@ -49,14 +51,13 @@
         android:layout_width="300dp"
         android:layout_height="21dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="304dp"
         android:inputType="textMultiLine"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/tvUserBottom"
-        app:layout_constraintTop_toBottomOf="@+id/ivImage"
-        app:layout_constraintVertical_bias="0.003"
         tools:text="description" />
 
     <TextView
@@ -76,11 +77,36 @@
         android:id="@+id/ivProfilePic"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="7dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="12dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/ivImage"
         app:layout_constraintStart_toStartOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/ivLike"
+        android:layout_width="24dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvUserBottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivImage"
+        app:layout_constraintVertical_bias="0.586"
+        app:srcCompat="@drawable/ufi_heart" />
+
+    <TextView
+        android:id="@+id/tvLikes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toEndOf="@+id/ivLike"
+        app:layout_constraintTop_toBottomOf="@+id/ivImage"
+        tools:text="25 likes" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
