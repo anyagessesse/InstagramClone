@@ -46,9 +46,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='InstagramClone1.gif' title='Video Walkthrough' width='200' alt='Video Walkthrough' />
-<img src='InstagramClone2.gif' title='Video Walkthrough' width='200' alt='Video Walkthrough' />
-<img src='InstagramClone3.gif' title='Video Walkthrough' width='200' alt='Video Walkthrough' />
+<img src='InstagramClone1.gif' title='Video Walkthrough' width='200' alt='Video Walkthrough' /> <img src='InstagramClone2.gif' title='Video Walkthrough' width='200' alt='Video Walkthrough' /> <img src='InstagramClone3.gif' title='Video Walkthrough' width='200' alt='Video Walkthrough' />
 
 GIF created with [Kap](https://getkap.co/).
 ## Credits
