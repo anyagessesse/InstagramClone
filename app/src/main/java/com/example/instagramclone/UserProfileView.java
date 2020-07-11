@@ -55,7 +55,11 @@ public class UserProfileView extends AppCompatActivity {
         });
 
         ivProfilePic = findViewById(R.id.ivProfilePic);
-        Glide.with(this).load(user.getParseFile("profilePic").getUrl()).into(ivProfilePic);
+
+        if(user.getParseFile("profilePic")!=null){
+            Glide.with(this).load(user.getParseFile("profilePic").getUrl()).into(ivProfilePic);
+        }
+
 
         rvPosts = findViewById(R.id.rvPosts);
         allPosts = new ArrayList<>();

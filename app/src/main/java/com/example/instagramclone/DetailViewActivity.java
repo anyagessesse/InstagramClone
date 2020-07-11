@@ -52,7 +52,11 @@ public class DetailViewActivity extends AppCompatActivity {
         tvDescription.setText(post.getDescription());
         tvDate.setText(post.getKeyCreatedAt());
         Glide.with(this).load(post.getImage().getUrl()).into(ivImage);
-        Glide.with(this).load(post.getUser().getParseFile("profilePic").getUrl()).into(ivProfilePic);
+
+        if(post.getUser().getParseFile("profilePic")!=null){
+            Glide.with(this).load(post.getUser().getParseFile("profilePic").getUrl()).into(ivProfilePic);
+        }
+
 
         SimpleDateFormat parser = new SimpleDateFormat("HH:mm EEE MMM d yyyy");
         Date date = post.getCreatedAt();
