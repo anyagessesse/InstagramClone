@@ -40,7 +40,7 @@ The following **additional** features are implemented:
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
 1. Using the gallery instead of the camera to set profile picture.
-2.
+2. Is using put and get better than creating a class for a Parse object?
 
 ## Video Walkthrough
 
